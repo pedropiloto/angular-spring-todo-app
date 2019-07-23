@@ -41,4 +41,8 @@ export class ListTodosComponent implements OnInit {
       this.todos = this.todos.filter(a => a.id != id);
     });
   }
+
+  addTodo() {
+    this.router.navigate(["todos", -1]);
+  }
 }
