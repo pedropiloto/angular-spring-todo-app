@@ -12,36 +12,35 @@ import java.util.List;
 @RestController
 public class TodoResource {
     @Autowired
-    private TodoHardcodedService todoHardcodedService;
+    private TodoJpaRepository todoJpaRepository;
 
     @GetMapping("/users/{username}/todos")
     public List<Todo> getAllTodos(@PathVariable String username) {
-        return todoHardcodedService.findAll();
+        return todoJpaRepository.findAll();
     }
 
     @GetMapping("/users/{username}/todos/{id}")
     public Todo getTodo(@PathVariable String username, @PathVariable long id) {
-        return todoHardcodedService.findById(id);
+        return todoJpaRepository.findById(id).get();
     }
 
     @PostMapping("/users/{username}/todos")
     public ResponseEntity<Todo> addTodo(@PathVariable String username, @RequestBody Todo todo) {
         System.out.println("cenas: " + todo);
-        Todo todoCreated = todoHardcodedService.save(todo);
+        Todo todoCreated = todoJpaRepository.save(todo);
         return new ResponseEntity<Todo>(todoCreated,HttpStatus.OK);
     }
 
     @PutMapping("/users/{username}/todos/{id}")
     public ResponseEntity<Todo> updateTodo(@PathVariable String username, @PathVariable long id, @RequestBody Todo todo) {
-        Todo todoUpdated = todoHardcodedService.save(todo);
+        Todo todoUpdated = todoJpaRepository.save(todo);
         return new ResponseEntity<Todo>(todoUpdated,HttpStatus.OK);
     }
 
     @DeleteMapping("/users/{username}/todos/{id}")
     public ResponseEntity<Void> deleteTodo(@PathVariable String username, @PathVariable long id){
-        Todo todo = todoHardcodedService.delete(id);
-        if(todo!=null) return ResponseEntity.noContent().build();
-        return ResponseEntity.notFound().build();
+        todoJpaRepository.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 
 }

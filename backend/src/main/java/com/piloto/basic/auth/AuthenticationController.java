@@ -1,4 +1,4 @@
-package com.piloto.todo.basic.auth;
+package com.piloto.basic.auth;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;

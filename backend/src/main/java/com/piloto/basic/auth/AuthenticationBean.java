@@ -1,4 +1,4 @@
-package com.piloto.todo.basic.auth;
+package com.piloto.basic.auth;
 
 public class AuthenticationBean {
 

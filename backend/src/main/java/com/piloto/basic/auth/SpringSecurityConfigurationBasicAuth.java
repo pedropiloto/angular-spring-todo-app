@@ -1,4 +1,4 @@
-package com.piloto.todo.basic.auth;
+package com.piloto.basic.auth;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
